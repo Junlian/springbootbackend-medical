@@ -1,7 +1,5 @@
 package com.example.demo.model.mysql;
 
-import com.example.demo.model.mysql.enums.AppointmentStatus;
-import com.example.demo.model.mysql.enums.AppointmentType;
 import lombok.Data;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -14,25 +12,18 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false)
     private Doctor doctor;
     
-    @Column(nullable = false)
-    private LocalDateTime dateTime;
+    @Column(name = "appointment_date_time")
+    private LocalDateTime appointmentDateTime;
     
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private AppointmentType type;
-    
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private AppointmentStatus status = AppointmentStatus.SCHEDULED;
+    private String status;
     
     private String notes;
-    private String cancellationReason;
 } 

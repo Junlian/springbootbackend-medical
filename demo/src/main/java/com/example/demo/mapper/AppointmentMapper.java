@@ -4,21 +4,15 @@ import com.example.demo.dto.AppointmentDTO;
 import com.example.demo.model.mysql.Appointment;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AppointmentMapper {
-    
-    @Mapping(source = "patient.id", target = "patientId")
-    @Mapping(source = "doctor.id", target = "doctorId")
+    @Mapping(target = "patient.id", source = "patientId")
+    @Mapping(target = "doctor.id", source = "doctorId")
+    Appointment toEntity(AppointmentDTO dto);
+
+    @Mapping(target = "patientId", source = "patient.id")
+    @Mapping(target = "doctorId", source = "doctor.id")
     AppointmentDTO toDTO(Appointment appointment);
-    
-    @Mapping(target = "patient", ignore = true)
-    @Mapping(target = "doctor", ignore = true)
-    Appointment toEntity(AppointmentDTO appointmentDTO);
-    
-    @Mapping(target = "patient", ignore = true)
-    @Mapping(target = "doctor", ignore = true)
-    void updateEntity(AppointmentDTO appointmentDTO, @MappingTarget Appointment appointment);
 } 

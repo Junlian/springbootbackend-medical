@@ -1,7 +1,5 @@
 package com.example.demo.dto;
 
-import com.example.demo.model.mongo.enums.RecordStatus;
-import com.example.demo.model.mongo.enums.RecordType;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,18 +18,12 @@ public class MedicalRecordDTO {
     private Long doctorId;
     
     // Core medical record data
-    private LocalDateTime date;
-    private RecordType type;
-    private RecordStatus status;
+    private LocalDateTime visitDate;
     private String diagnosis;
-    private String notes;
+    private String treatment;
     
     // Associated data
-    private List<String> attachments; // Store attachment IDs as strings
-    private MetadataDTO metadata;
-    
-    // Treatment information
-    private List<String> prescriptions;
-    private List<String> treatments;
-    private String followUpInstructions;
+    private String prescription;
+    private String notes;
+    private List<AttachmentDTO> attachments;
 }

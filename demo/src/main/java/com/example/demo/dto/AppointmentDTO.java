@@ -1,7 +1,5 @@
 package com.example.demo.dto;
 
-import com.example.demo.model.mysql.enums.AppointmentStatus;
-import com.example.demo.model.mysql.enums.AppointmentType;
 import lombok.Data;
 import java.time.LocalDateTime;
 
@@ -10,9 +8,9 @@ public class AppointmentDTO {
     private Long id;
     private Long patientId;
     private Long doctorId;
-    private LocalDateTime dateTime;
-    private AppointmentType type;
-    private AppointmentStatus status;
+    private LocalDateTime appointmentTime;
+    private String status;
+    private String type;
     private String notes;
-    private String cancellationReason;
+    private String reason;
 } 

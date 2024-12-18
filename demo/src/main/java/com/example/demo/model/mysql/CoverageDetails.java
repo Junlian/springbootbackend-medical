@@ -12,25 +12,12 @@ public class CoverageDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "insurance_info_id", nullable = false)
-    private InsuranceInfo insuranceInfo;
-    
-    @Column(nullable = false)
     private BigDecimal deductible;
-    
-    @Column(nullable = false)
     private BigDecimal copayment;
     
-    @Column(nullable = false)
-    private BigDecimal coinsurance;
-    
-    @Column(nullable = false)
+    @Column(name = "out_of_pocket_max")
     private BigDecimal outOfPocketMax;
     
-    @Column(nullable = false)
-    private Boolean requiresPreAuth;
-    
-    @Column(nullable = false)
-    private String coverageLevel;
+    @Column(name = "coverage_type")
+    private String coverageType;
 }

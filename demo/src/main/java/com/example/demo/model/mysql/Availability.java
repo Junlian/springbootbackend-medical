@@ -1,29 +1,22 @@
 package com.example.demo.model.mysql;
 
-import com.example.demo.model.mysql.enums.DayOfWeek;
 import lombok.Data;
 import jakarta.persistence.*;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "doctor_availability")
+@Table(name = "availabilities")
 public class Availability {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "doctor_id", nullable = false)
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private Boolean isAvailable;
+    
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
-    
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private DayOfWeek dayOfWeek;
-    
-    @Column(nullable = false)
-    private LocalTime startTime;
-    
-    @Column(nullable = false)
-    private LocalTime endTime;
 } 

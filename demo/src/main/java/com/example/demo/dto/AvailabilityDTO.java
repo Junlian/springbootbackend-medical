@@ -1,13 +1,12 @@
 package com.example.demo.dto;
 
-import com.example.demo.model.mysql.enums.DayOfWeek;
 import lombok.Data;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Data
 public class AvailabilityDTO {
     private Long id;
-    private DayOfWeek dayOfWeek;
-    private LocalTime startTime;
-    private LocalTime endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private Boolean isAvailable;
 } 

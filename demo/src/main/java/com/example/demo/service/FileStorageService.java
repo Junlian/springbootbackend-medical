@@ -1,9 +1,9 @@
 package com.example.demo.service;
 
+import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface FileStorageService {
-    String storeFile(MultipartFile file);
-    byte[] getFile(String fileId);
-    void deleteFile(String fileId);
+    String storeFile(MultipartFile file, String fileName);
+    Resource loadFileAsResource(String fileName);
 } 

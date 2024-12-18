@@ -8,8 +8,6 @@ public class CoverageDetailsDTO {
     private Long id;
     private BigDecimal deductible;
     private BigDecimal copayment;
-    private BigDecimal coinsurance;
     private BigDecimal outOfPocketMax;
-    private Boolean requiresPreAuth;
-    private String coverageLevel;
+    private String coverageType;
 } 

@@ -12,26 +12,26 @@ public class InsuranceInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patient_id", nullable = false)
-    private Patient patient;
-    
     @Column(nullable = false)
     private String provider;
     
-    @Column(nullable = false)
+    @Column(name = "policy_number", nullable = false, unique = true)
     private String policyNumber;
     
+    @Column(name = "group_number")
     private String groupNumber;
     
-    @Column(nullable = false)
-    private LocalDate effectiveDate;
+    @Column(name = "valid_from")
+    private LocalDate validFrom;
     
-    private LocalDate expirationDate;
+    @Column(name = "valid_until")
+    private LocalDate validUntil;
     
-    @Column(nullable = false)
-    private String planType;
+    @OneToOne
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
     
-    @OneToOne(mappedBy = "insuranceInfo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private CoverageDetails coverage;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "coverage_details_id")
+    private CoverageDetails coverageDetails;
 } 

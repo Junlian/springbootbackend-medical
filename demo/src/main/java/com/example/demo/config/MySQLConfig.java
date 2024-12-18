@@ -1,12 +1,10 @@
 package com.example.demo.config;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.example.demo.repository.jpa")
+@EntityScan(basePackages = "com.example.demo.model.mysql")
 public class MySQLConfig {
-    // Additional database configuration if needed
+    // Configuration if needed
 } 

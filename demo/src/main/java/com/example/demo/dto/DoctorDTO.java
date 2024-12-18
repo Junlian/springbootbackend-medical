@@ -9,9 +9,8 @@ public class DoctorDTO {
     private String firstName;
     private String lastName;
     private String specialization;
-    private String email;
-    private String phone;
     private String licenseNumber;
-    private List<String> qualifications;
-    private List<AvailabilityDTO> availability;
+    private String email;
+    private String phoneNumber;
+    private List<AvailabilityDTO> availabilities;
 } 

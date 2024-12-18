@@ -6,11 +6,10 @@ import org.springframework.stereotype.Service;
 public class PushNotificationServiceImpl implements PushNotificationService {
     
     @Override
-    public void sendPushNotification(String deviceToken, String title, String message) {
+    public void sendPushNotification(String userId, String message) {
         // TODO: Implement actual push notification logic
         // For now just log the notification
-        System.out.println("Sending push notification to device: " + deviceToken);
-        System.out.println("Title: " + title);
+        System.out.println("Sending push notification to device: " + userId);
         System.out.println("Message: " + message);
     }
 } 
