@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import com.example.demo.service.PrescriptionService;
 import com.example.demo.dto.PrescriptionDTO;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service

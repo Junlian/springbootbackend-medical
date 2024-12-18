@@ -1,7 +1,7 @@
 package com.example.demo.specification;
 
 import com.example.demo.dto.AppointmentSearchCriteria;
-import com.example.demo.model.mysql.Appointment;
+import com.example.demo.entity.Appointment;
 import org.springframework.data.jpa.domain.Specification;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;

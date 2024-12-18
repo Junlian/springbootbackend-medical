@@ -2,8 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.dto.InsuranceVerificationDTO;
 import com.example.demo.dto.ClaimDTO;
-import com.example.demo.model.mysql.Claim;
-import com.example.demo.model.mysql.ClaimStatus;
 import org.springframework.data.domain.Page;
 
 public interface InsuranceService {

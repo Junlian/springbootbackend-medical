@@ -17,11 +17,12 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())  // Disable CSRF for simplicity in development
+            .cors().and()  // Enable CORS
+            .csrf().disable()  // Disable CSRF for API endpoints
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/home", "/login", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/api/v1/doctors/**").permitAll()  // Allow doctor endpoints
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form

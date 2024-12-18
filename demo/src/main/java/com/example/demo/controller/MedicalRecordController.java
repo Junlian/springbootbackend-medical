@@ -15,33 +15,37 @@ public class MedicalRecordController {
     @Autowired
     private MedicalRecordService medicalRecordService;
 
-    @GetMapping("/{patientId}")
+    @GetMapping
     public ResponseEntity<Page<MedicalRecordDTO>> getPatientMedicalRecords(
-            @PathVariable Long patientId,
+            @RequestParam Long patientId,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size) {
+            @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(medicalRecordService.getPatientMedicalRecords(patientId, page, size));
     }
 
-    @PostMapping("/{patientId}")
+    @PostMapping
     public ResponseEntity<MedicalRecordDTO> createMedicalRecord(
-            @PathVariable Long patientId,
+            @RequestParam Long patientId,
             @Valid @RequestBody MedicalRecordDTO medicalRecordDTO) {
         return ResponseEntity.ok(medicalRecordService.createMedicalRecord(patientId, medicalRecordDTO));
     }
 
-    @GetMapping("/{patientId}/{recordId}")
+    @GetMapping("/{recordId}")
     public ResponseEntity<MedicalRecordDTO> getMedicalRecord(
-            @PathVariable Long patientId,
             @PathVariable String recordId) {
-        return ResponseEntity.ok(medicalRecordService.getMedicalRecord(patientId, recordId));
+        return ResponseEntity.ok(medicalRecordService.getMedicalRecord(recordId));
     }
 
-    @PutMapping("/{patientId}/{recordId}")
+    @PutMapping("/{recordId}")
     public ResponseEntity<MedicalRecordDTO> updateMedicalRecord(
-            @PathVariable Long patientId,
             @PathVariable String recordId,
             @Valid @RequestBody MedicalRecordDTO medicalRecordDTO) {
-        return ResponseEntity.ok(medicalRecordService.updateMedicalRecord(patientId, recordId, medicalRecordDTO));
+        return ResponseEntity.ok(medicalRecordService.updateMedicalRecord(recordId, medicalRecordDTO));
+    }
+
+    @DeleteMapping("/{recordId}")
+    public ResponseEntity<Void> deleteMedicalRecord(@PathVariable String recordId) {
+        medicalRecordService.deleteMedicalRecord(recordId);
+        return ResponseEntity.ok().build();
     }
 } 

@@ -3,8 +3,8 @@ package com.example.demo.service.impl;
 import com.example.demo.dto.AvailabilityDTO;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.mapper.AvailabilityMapper;
-import com.example.demo.model.mysql.Availability;
-import com.example.demo.model.mysql.Doctor;
+import com.example.demo.model.mysql.DoctorAvailability;
+import com.example.demo.entity.Doctor;
 import com.example.demo.repository.AvailabilityRepository;
 import com.example.demo.repository.DoctorRepository;
 import com.example.demo.service.DoctorAvailabilityService;
@@ -39,14 +39,14 @@ public class DoctorAvailabilityServiceImpl implements DoctorAvailabilityService 
         Doctor doctor = doctorRepository.findById(doctorId)
             .orElseThrow(() -> new ResourceNotFoundException("Doctor not found"));
         
-        Availability availability = availabilityMapper.toEntity(dto);
+        DoctorAvailability availability = availabilityMapper.toEntity(dto);
         availability.setDoctor(doctor);
         return availabilityMapper.toDTO(availabilityRepository.save(availability));
     }
 
     @Override
     public AvailabilityDTO updateAvailability(Long doctorId, Long availabilityId, AvailabilityDTO dto) {
-        Availability availability = availabilityRepository.findByIdAndDoctorId(availabilityId, doctorId)
+        DoctorAvailability availability = availabilityRepository.findByIdAndDoctorId(availabilityId, doctorId)
             .orElseThrow(() -> new ResourceNotFoundException("Availability not found"));
         
         availabilityMapper.updateFromDTO(dto, availability);

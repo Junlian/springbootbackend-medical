@@ -1,7 +1,7 @@
 package com.example.demo.dto;
 
 import lombok.Data;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Data
 public class DoctorDTO {
@@ -12,5 +12,6 @@ public class DoctorDTO {
     private String licenseNumber;
     private String email;
     private String phoneNumber;
-    private List<AvailabilityDTO> availabilities;
+    private String status;
+    private LocalDateTime createdAt;
 } 

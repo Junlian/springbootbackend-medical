@@ -1,7 +1,7 @@
 package com.example.demo.specification;
 
 import com.example.demo.criteria.PatientSearchCriteria;
-import com.example.demo.model.mysql.Patient;
+import com.example.demo.entity.Patient;
 import org.springframework.data.jpa.domain.Specification;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;

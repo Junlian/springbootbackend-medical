@@ -2,6 +2,7 @@ package com.example.demo.model.mysql;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import com.example.demo.entity.Patient;
 
 @Data
 @Entity

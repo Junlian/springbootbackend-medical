@@ -1,19 +1,14 @@
 package com.example.demo.dto;
 
 import lombok.Data;
-import com.example.demo.model.mysql.ClaimStatus;
-import java.time.LocalDateTime;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Data
 public class ClaimDTO {
     private Long id;
-    private String claimNumber;
-    private LocalDateTime submissionDate;
-    private BigDecimal amount;
-    private ClaimStatus status;
-    private Long patientId;
-    private String description;
-    private String serviceProvider;
-    private LocalDateTime serviceDate;
+    private Long policyId;
+    private LocalDate claimDate;
+    private BigDecimal claimAmount;
+    private String status;
 } 

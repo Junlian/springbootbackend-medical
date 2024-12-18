@@ -9,11 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
-import org.springframework.format.annotation.DateTimeFormat;
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/api/v1/doctors")
+@CrossOrigin(origins = "http://localhost:5173")
 public class DoctorController {
 
     @Autowired
@@ -24,17 +23,16 @@ public class DoctorController {
         return ResponseEntity.ok(doctorService.createDoctor(doctorDTO));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<DoctorDTO> getDoctorById(@PathVariable Long id) {
+        return ResponseEntity.ok(doctorService.getDoctorById(id));
+    }
+
     @GetMapping
     public ResponseEntity<Page<DoctorDTO>> getDoctors(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size,
-            @RequestParam(required = false) String specialization) {
-        return ResponseEntity.ok(doctorService.getDoctors(page, size, specialization));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<DoctorDTO> getDoctor(@PathVariable Long id) {
-        return ResponseEntity.ok(doctorService.getDoctor(id));
+            @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(doctorService.getAllDoctors(page, size));
     }
 
     @PutMapping("/{id}")
@@ -50,10 +48,23 @@ public class DoctorController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/specialization/{specialization}")
+    public ResponseEntity<List<DoctorDTO>> getDoctorsBySpecialization(
+            @PathVariable String specialization) {
+        return ResponseEntity.ok(doctorService.getDoctorsBySpecialization(specialization));
+    }
+
     @GetMapping("/{id}/availability")
     public ResponseEntity<List<AvailabilityDTO>> getDoctorAvailability(
             @PathVariable Long id,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+            @RequestParam String date) {
         return ResponseEntity.ok(doctorService.getDoctorAvailability(id, date));
+    }
+
+    @PutMapping("/{id}/availability")
+    public ResponseEntity<List<AvailabilityDTO>> updateAvailability(
+            @PathVariable Long id,
+            @RequestBody List<AvailabilityDTO> availability) {
+        return ResponseEntity.ok(doctorService.updateAvailability(id, availability));
     }
 }

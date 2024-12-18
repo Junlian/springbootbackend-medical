@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.AvailabilityDTO;
-import com.example.demo.model.mysql.Availability;
 import java.time.LocalDate;
 import java.util.List;
 

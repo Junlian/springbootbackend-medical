@@ -5,18 +5,13 @@ CREATE TABLE IF NOT EXISTS patients (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
-    date_of_birth DATE NOT NULL,
     email VARCHAR(100),
-    phone_number VARCHAR(15),
-    insurance_number VARCHAR(50),
-    name VARCHAR(100),
-    street VARCHAR(255),
-    city VARCHAR(100),
-    state VARCHAR(50),
-    zip_code VARCHAR(20),
-    country VARCHAR(50) DEFAULT 'USA',
+    phone VARCHAR(15),
+    status VARCHAR(20) DEFAULT 'ACTIVE',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_email (email),
+    INDEX idx_phone (phone)
 ) ENGINE=InnoDB;
 
 -- Create coverage_details table before insurance_info
@@ -91,7 +86,7 @@ CREATE TABLE IF NOT EXISTS appointments (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     patient_id BIGINT NOT NULL,
     doctor_id BIGINT NOT NULL,
-    appointment_time DATETIME NOT NULL,
+    appointment_date_time DATETIME NOT NULL,
     duration INT DEFAULT 30,
     status ENUM('SCHEDULED', 'COMPLETED', 'CANCELLED', 'NO_SHOW') DEFAULT 'SCHEDULED',
     type ENUM('REGULAR', 'FOLLOW_UP', 'EMERGENCY') NOT NULL,
@@ -101,22 +96,16 @@ CREATE TABLE IF NOT EXISTS appointments (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (patient_id) REFERENCES patients(id),
     FOREIGN KEY (doctor_id) REFERENCES doctors(id),
-    INDEX idx_appointment_time (appointment_time),
+    INDEX idx_appointment_date_time (appointment_date_time),
     INDEX idx_patient_doctor (patient_id, doctor_id)
 ) ENGINE=InnoDB;
 
 -- Create claims table
 CREATE TABLE IF NOT EXISTS claims (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    patient_id BIGINT NOT NULL,
-    claim_number VARCHAR(20) NOT NULL,
-    service_date DATE NOT NULL,
-    amount DECIMAL(10,2) NOT NULL,
+    policy_id BIGINT NOT NULL,
+    claim_date DATE NOT NULL,
+    claim_amount DECIMAL(10,2) NOT NULL,
     status VARCHAR(20) NOT NULL,
-    submission_date DATETIME NOT NULL,
-    description TEXT,
-    service_provider VARCHAR(100),
-    FOREIGN KEY (patient_id) REFERENCES patients(id),
-    INDEX idx_claim_number (claim_number),
-    INDEX idx_patient_claims (patient_id)
+    FOREIGN KEY (policy_id) REFERENCES insurance_info(id)
 ) ENGINE=InnoDB; 

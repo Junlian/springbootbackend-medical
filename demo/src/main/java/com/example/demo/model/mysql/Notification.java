@@ -3,6 +3,7 @@ package com.example.demo.model.mysql;
 import lombok.Data;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import com.example.demo.entity.Appointment;
 
 @Data
 @Entity

@@ -2,7 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.dto.PatientDTO;
 import com.example.demo.mapper.PatientMapper;
-import com.example.demo.model.mysql.Patient;
+import com.example.demo.entity.Patient;
 import com.example.demo.repository.PatientRepository;
 import com.example.demo.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;

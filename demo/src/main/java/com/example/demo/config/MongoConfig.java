@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "com.example.demo.repository")
+@EnableMongoRepositories(basePackages = "com.example.demo.repository.mongo")
 public class MongoConfig {
 
     @Bean

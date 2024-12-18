@@ -1,16 +1,16 @@
 package com.example.demo.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 public class AppointmentDTO {
     private Long id;
     private Long patientId;
     private Long doctorId;
-    private LocalDateTime appointmentTime;
+    private LocalDateTime appointmentDateTime;
     private String status;
-    private String type;
     private String notes;
-    private String reason;
 } 

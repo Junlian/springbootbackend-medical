@@ -1,13 +1,12 @@
 package com.example.demo.dto;
 
 import lombok.Data;
+import java.time.LocalDateTime;
 
 @Data
 public class AttachmentDTO {
-    private String id;
+    private String fileId;
     private String fileName;
     private String fileType;
-    private String filePath;
-    private Long size;
-    private String uploadDate;
+    private LocalDateTime uploadDate;
 } 
